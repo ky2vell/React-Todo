@@ -17,12 +17,9 @@ const todos = [
 ];
 
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      todos
-    };
-  }
+  state = {
+    todos
+  };
 
   addTodo = (e, todo) => {
     e.preventDefault();
