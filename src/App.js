@@ -18,19 +18,29 @@ const todos = [
 
 class App extends React.Component {
   state = {
-    todos
+    todos,
+    theme: 'light'
+  };
+
+  toggleTheme = e => {
+    const theme = e.target.checked ? 'dark' : 'light';
+    this.setState({ theme });
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('Theme', theme);
   };
 
   addTodo = (e, todo) => {
     e.preventDefault();
-    const newTodo = {
-      task: todo,
-      id: Date.now(),
-      completed: false
-    };
-    this.setState({
-      todos: [...this.state.todos, newTodo]
-    });
+    if (todo.length > 0) {
+      const newTodo = {
+        task: todo,
+        id: Date.now(),
+        completed: false
+      };
+      this.setState({
+        todos: [...this.state.todos, newTodo]
+      });
+    }
   };
 
   toggleTodo = todoId => {
@@ -54,10 +64,31 @@ class App extends React.Component {
     });
   };
 
+  componentDidMount() {
+    const themeSwitch = document.getElementById('checkbox');
+    localStorage.getItem('Theme') === 'dark'
+      ? (themeSwitch.checked = true)
+      : (themeSwitch.checked = false);
+
+    document.documentElement.setAttribute(
+      'data-theme',
+      localStorage.getItem('Theme')
+    );
+
+    localStorage.getItem('Todos') &&
+      this.setState({
+        todos: JSON.parse(localStorage.getItem('Todos'))
+      });
+  }
+
+  componentDidUpdate() {
+    localStorage.setItem('Todos', JSON.stringify(this.state.todos));
+  }
+
   render() {
     return (
       <div className='container'>
-        <ThemeSwitch />
+        <ThemeSwitch toggleTheme={this.toggleTheme} />
         <h1>Welcome to your Todo App!</h1>
         <TodoForm addTodo={this.addTodo} />
         <TodoList

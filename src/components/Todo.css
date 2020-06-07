@@ -36,7 +36,7 @@ html {
   margin: 0;
   padding: 0;
   background-color: var(--primary-color);
-  transition: var(--background-transition);
+  /* transition: var(--background-transition); */
   font-family: 'Architects Daughter', cursive;
 }
 
@@ -64,17 +64,17 @@ ul {
 
 ul li {
   color: #000;
-  background: var(--list-background);
+  background-color: var(--list-background);
   cursor: pointer;
   margin-bottom: 0.5em;
-  padding: 0.5em;
+  padding: 0.5em 1.5em;
   box-shadow: 1px 1px 2px var(--box-shadow-todo);
   transition: var(--background-transition), box-shadow 300ms;
 }
 
 button {
   font-family: 'Roboto', sans-serif;
-  background: var(--button-background);
+  background-color: var(--button-background);
   color: #ffffff;
   cursor: pointer;
   display: inline-block;
@@ -106,7 +106,7 @@ form {
 
 input#submit {
   padding: 0.5em 1.6em;
-  background: var(--input-background);
+  background-color: var(--input-background);
   margin: 0 1em 0 0;
   color: var(--input-color);
   font-family: inherit;
@@ -114,7 +114,7 @@ input#submit {
   line-height: 1.8;
   border: none;
   border-radius: 0.4rem;
-  transition: var(--transition-both), box-shadow 400ms;
+  transition: var(--color-transition), box-shadow 400ms;
   width: 15%;
   font-size: 1em;
 }

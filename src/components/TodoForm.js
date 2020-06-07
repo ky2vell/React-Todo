@@ -10,12 +10,9 @@ export class TodoForm extends Component {
   };
 
   submitTodo = e => {
-    const input = document.getElementById('submit');
     e.preventDefault();
-    if (input.value.length !== 0) {
-      this.setState({ todo: '' });
-      this.props.addTodo(e, this.state.todo);
-    }
+    this.props.addTodo(e, this.state.todo);
+    // this.setState({ todo: '' });
   };
 
   render() {
